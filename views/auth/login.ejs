@@ -1,0 +1,24 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+
+
+<div class="container">
+    <%- include('../partials/flash.ejs'); %>
+    <h1 class ="mx-5 my-4">Login </h1>
+    <form class="mx-5 needs-validation" method="POST" action ="/login" novalidate>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username </label>
+            <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>   
+
+</div>
+
+
+
+<%- include('../partials/footer.ejs') %>

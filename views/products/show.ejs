@@ -1,0 +1,104 @@
+<%-include('../partials/header') %>
+<%-include('../partials/navbar') %>
+<link rel="stylesheet" href="/css/stars.css">
+<div class="container"> 
+    <div class="row mt-5">
+
+                <div class="col-lg-6 col-md-12" style=" height :100% ;">
+                    <div class="card my-3 text-center" >
+                        <img src="<%=product.img%>" class="card-img-top" alt="products">
+                        <div class="card-body">
+                          <h5 class="card-title"> <%= product.name %></h5>
+                          
+                          <h5 class="card-title">$ <%= product.price %></h5>
+                          <p class="card-text"> <%=product.desc %></p>
+                          <form action="/user/<%=product._id%>/cart" method="POST">
+                            <button class="btn btn-secondary">Add to cart</button>
+                          </form>
+                            
+                          <a href="/products/<%=product._id%>/edit" class="btn btn-warning">Edit </a>
+
+                          <form action="/products/<%=product._id%>?_method=DELETE" method="post">
+                            <button  class="btn btn-danger">Delete</button>
+                        </form>
+                          <a href="#" class="btn btn-success">Buy</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                  
+                <div class="col-lg-6 ">
+                  <div class="container reviewForm">
+                        <form action="/products/<%= product._id %>/reviews" method="POST" class="needs-validation" novalidate>
+            
+                            <h1 class = "text-center">Leave a Review</h1>
+                          
+                            
+                             
+                            <!-- <label for="review" class="form-label">Reviews</label>
+                            <input type="range" class="form-range" min="0" max="5" id="review" name="review">
+                             -->
+                            <fieldset class="starability-basic">
+                              <legend>First rating:</legend>
+                              <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                              <input type="radio" id="first-rate1" name="review" value="1" />
+                              <label for="first-rate1" title="Terrible">1 star</label>
+                              <input type="radio" id="first-rate2" name="review" value="2" />
+                              <label for="first-rate2" title="Not good">2 stars</label>
+                              <input type="radio" id="first-rate3" name="review" value="3" />
+                              <label for="first-rate3" title="Average">3 stars</label>
+                              <input type="radio" id="first-rate4" name="review" value="4" />
+                              <label for="first-rate4" title="Very good">4 stars</label>
+                              <input type="radio" id="first-rate5" name="review" value="5" />
+                              <label for="first-rate5" title="Amazing">5 stars</label>
+                            </fieldset>
+                            
+                            <div class="mb-3">
+                                <label for="desc" class="form-label">Description</label>
+                                <textarea class="form-control" id="comment"  name = "comment"rows="5" placeholder="Comment" required></textarea>
+                            </div>
+                        
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit">Submit form</button>
+                            </div>
+                        </form>
+
+                    </div>
+                    
+                    <div class="allReviews m-3">
+
+
+                        <% for(let i=0; i<product.reviews.length;i++){ %>
+                              
+                        <div class="card my-2">
+                            <div class="card-header">
+                              <strong>
+
+                                <%=product.reviews[i].user%>
+                              </strong>
+                            </div>
+                            
+                            <div class="card-body">
+                              Reviews :
+                              <p class="starability-result" data-rating="<%=product.reviews[i].review%>">
+                              </p>
+                              <p class="card-text"><%=product.reviews[i].comment%></p>
+                            
+                            </div>
+
+                          </div>
+
+                        <%}%>
+                    </div>
+
+            
+                </div>
+    
+    </div>
+
+</div>
+
+
+
+
+<%-include('../partials/footer') %>

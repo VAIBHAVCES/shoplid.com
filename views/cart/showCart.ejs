@@ -1,0 +1,110 @@
+<%-include('../partials/header.ejs')%>
+
+<%-include('../partials/navbar.ejs')%>
+
+<%-include('../partials/flash.ejs')%>
+
+
+
+<% let bucket= {};  %> 
+<div class="container mx-8">
+
+      <div class="row">
+
+        <div class="col-lg-6">
+          <h1>My Cart</h1>
+          <!-- MAINTAINING A OBJECT FOR TRACKING FREQUENCY -->
+          <% for(let i=0 ;i < user.cart.length ;i++){ 
+            let tname =user.cart[i].name;
+            if(bucket[tname]){
+              
+              bucket[tname].quant++;
+
+            }else{
+              
+              bucket[tname]={
+                quant:1,
+                price:user.cart[i].price
+              }
+            }
+            
+          %>
+
+          
+          <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4" >
+                  <img src="<%=user.cart[i].img%>"  style =" object-fit: contain; height: 100%; width: 100%;"alt="No img found">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><%=user.cart[i].name%></h5>
+                    <p class="card-text"><%=user.cart[i].desc.substring(0,50)%></p>
+                    <p class="card-text"><small class="text-muted">	&#8377; <%=user.cart[i].price%></small></p>
+                    <form action="/user/<%=user._id%>/product/<%=user.cart[i]._id%>?_method=DELETE" method="post">
+                        <button class = "btn btn-danger">Remove</button>
+                    </form>  
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          <%}%>
+
+        </div>
+        <% let netBill = 0;%>
+        <div class="col-lg-6">
+          <h1>Tottal Bill</h1>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <td>Name Of Product</td>
+                <td>Quantity</td>
+                <td> Tottal</td> 
+                </tr>
+            </thead>
+            <%for(let aone in bucket) {               
+            let subTott = bucket[aone].quant*bucket[aone].price
+            netBill+=subTott;
+             %>
+            
+            <tr>
+              
+              <td><%=aone%></td>
+              <td><%=bucket[aone].quant%></td>
+              <td>	&#8377;<%= subTott %></td>
+              
+            </tr>
+
+            
+            <%}%>
+            
+            <tr>  
+              <td  colspan="2">Tottal</td>
+              <td> 	&#8377; <%= netBill%> </td>
+            </tr>
+
+ 
+            <tr>  
+              <% let tax  =  (netBill*15)/100; %>
+              <td  colspan="2">GST</td>
+              <td>	&#8377; <%= tax%> </td>
+            </tr>
+
+            <tr>
+              <td  colspan="2"><strong>Net Payable Amount :</strong></td>
+              <td><strong> 	&#8377;<%= netBill+tax%></strong> </td>  
+              
+            </tr>
+
+          </table>
+          
+
+        </div>
+
+      </div>
+      
+
+</div>
+<%-include('../partials/footer.ejs')%>

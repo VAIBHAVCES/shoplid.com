@@ -1,0 +1,22 @@
+
+.cartQuantity{
+        position: absolute;
+        background-color: red;
+        height: 70%;
+        width: 60%;
+        top: -14px;
+        right: -2px;
+        border-radius: 20%;
+}
+
+
+.cartQuantity span{
+    position: absolute;
+    font-size: 50%;
+    top: -1px;
+    right: 4px;
+}
+
+.navbar a, .navbar span{
+    color: white;
+}
