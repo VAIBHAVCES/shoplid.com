@@ -57,7 +57,6 @@ app.use((req,res,next)=>{
 })
 
 //--------------------db connectivity------------------
-console.log(process.env.DB_URL);
 mongoose.connect(  process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true , useFindAndModify:false})
 .then(()=>{
     console.log("successfully connected to db");
@@ -80,6 +79,6 @@ app.get("/",(req,res)=>{
     res.render("home/home.ejs");
 })
 
-app.listen(port ,()=>{
+app.listen(process.env.PORT||port ,()=>{
     console.log("listening on "+port);
 })
