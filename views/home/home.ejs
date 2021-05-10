@@ -1,0 +1,86 @@
+<%- include("../partials/header.ejs") %>
+<style>
+*{
+    margin: 0px;
+    border: 0px;
+    box-sizing: bo;
+}
+body{
+    background-color: black;
+    color: white    ;
+}
+.homePage::before{
+    content: "";
+    background-image: url("https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=916&q=80");
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+
+}
+.navbar ul{
+    position: absolute;
+    right: 40px;
+    top: 10px;
+    font-size: 2rem;
+}
+
+.bodyCenter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    z-index: +1;
+    position: absolute;
+    top:30%;
+    left: 25%;
+}
+.bodyCenter{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.bodyCenter span
+{
+    font-size:2rem;
+}
+
+
+</style>
+<div class=" homePage">
+
+    <nav class="navbar navbar-expand-lg">
+        
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item mx-5">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item mx-5">
+                <a class="nav-link" href="/products">Products</a>
+              </li>
+              <li class="nav-item mx-5">
+                <a class="nav-link" href="/login">Sign In</a>
+              </li>
+              <li class="nav-item mx-5">
+                <a class="nav-link" href="/register" >SignUp</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+     
+
+
+</div>
+<div class="bodyCenter ">
+    <span style="font-size: 5rem;">Welcome to Shoplid.com</span>
+    <span>A one place spot for getting what you want</span>
+
+</div>
+
+<%- include("../partials/footer.ejs") %>

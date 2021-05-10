@@ -76,7 +76,9 @@ app.use(authRouter);
 app.use(cartRouter);
 app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.get("/",(req,res)=>{
+    res.render("home/home.ejs");
+})
 
 app.listen(port ,()=>{
     console.log("listening on "+port);
